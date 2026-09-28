@@ -1,167 +1,66 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Servidor Interativo</title>
-  <style>
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#08090d;color:#f5f7fb}
-    .wrap{max-width:1050px;margin:auto;padding:48px 20px}
-    .hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:28px}
-    .eyebrow{color:#8b93a7;font-size:13px;text-transform:uppercase;letter-spacing:.14em}
-    h1{font-size:clamp(32px,6vw,58px);margin:8px 0 10px;letter-spacing:-.04em}
-    p{color:#a9b0c0;line-height:1.6}
-    .badge{border:1px solid #293044;background:#10131b;border-radius:999px;padding:10px 14px;color:#c8d0df;white-space:nowrap}
-    .dot{display:inline-block;width:9px;height:9px;background:#46d68c;border-radius:50%;margin-right:8px}
-    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
-    .card{background:#10131a;border:1px solid #202636;border-radius:20px;padding:22px}
-    .card h2{margin:0 0 16px;font-size:18px}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .stat{background:#0b0e14;border:1px solid #1d2432;border-radius:14px;padding:16px}
-    .stat small{color:#7f8798}.stat strong{display:block;font-size:25px;margin-top:5px}
-    button{border:0;border-radius:11px;padding:11px 14px;background:#f2f4f8;color:#08090d;font-weight:700;cursor:pointer}
-    button.secondary{background:#1b2130;color:#e8ebf2}
-    button:hover{filter:brightness(1.08)}
-    .actions{display:flex;flex-wrap:wrap;gap:10px}
-    pre{margin:14px 0 0;background:#080b10;border:1px solid #1b2230;border-radius:14px;padding:16px;overflow:auto;color:#cbd4e5;min-height:150px}
-    input{width:100%;background:#0b0e14;border:1px solid #293044;border-radius:10px;color:white;padding:12px;margin:7px 0}
-    label{display:block;color:#9ba4b6;font-size:13px;margin-top:8px}
-    .wide{grid-column:1/-1}
-    @media(max-width:760px){.hero{display:block}.badge{display:inline-block;margin-top:12px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXORA Server</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07090d;color:#eef2f8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1100px;margin:auto;padding:46px 20px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:26px}.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#788297}h1{font-size:clamp(38px,7vw,68px);letter-spacing:-.055em;margin:7px 0}.lead{max-width:680px;color:#9da7b9;line-height:1.65}.badge{border:1px solid #263044;background:#0e121a;padding:10px 14px;border-radius:999px;white-space:nowrap}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:#4ade80;margin-right:8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#0e1219;border:1px solid #202839;border-radius:20px;padding:21px}.wide{grid-column:1/-1}.card h2{font-size:17px;margin:0 0 15px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#090c12;border:1px solid #1c2432;border-radius:14px;padding:14px}.stat small{color:#778195}.stat strong{display:block;font-size:23px;margin-top:5px}.actions{display:flex;gap:9px;flex-wrap:wrap}button{border:0;border-radius:10px;padding:11px 14px;background:#f1f4f8;color:#07090d;font-weight:750;cursor:pointer}button.secondary{background:#1a2130;color:#e7ebf2}input{width:100%;padding:12px;border-radius:10px;border:1px solid #293246;background:#080b10;color:white;margin:7px 0 12px}label{font-size:12px;color:#8792a7}pre{white-space:pre-wrap;word-break:break-word;min-height:140px;background:#080b10;border:1px solid #1b2331;border-radius:14px;padding:15px;color:#cbd5e5;overflow:auto}.hint{font-size:12px;color:#687389}@media(max-width:760px){.hero{display:block}.badge{display:inline-block;margin-top:14px}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Public API • Vercel</div>
-        <h1>Servidor Interativo</h1>
-        <p>Um backend público com endpoints REST e painel para testar as funções do servidor diretamente pelo navegador.</p>
-      </div>
-      <div class="badge"><span class="dot"></span><span id="statusText">Verificando...</span></div>
-    </section>
+<main class="wrap">
+<section class="hero">
+<div><div class="eyebrow">NEXORA • API PLATFORM</div><h1>Server 2.0</h1><p class="lead">Servidor interativo com API REST, Vercel e banco PostgreSQL através do Supabase. Teste as operações diretamente nesta página.</p></div>
+<div class="badge"><span class="dot"></span><span id="statusText">Verificando...</span></div>
+</section>
 
-    <section class="card" style="margin-bottom:18px">
-      <h2>Monitoramento</h2>
-      <div class="stats">
-        <div class="stat"><small>Status</small><strong id="status">—</strong></div>
-        <div class="stat"><small>Ambiente</small><strong id="env">—</strong></div>
-        <div class="stat"><small>Requisições</small><strong id="requests">—</strong></div>
-      </div>
-    </section>
+<section class="card" style="margin-bottom:16px">
+<h2>Monitoramento</h2>
+<div class="stats">
+<div class="stat"><small>Servidor</small><strong id="server">—</strong></div>
+<div class="stat"><small>Banco</small><strong id="database">—</strong></div>
+<div class="stat"><small>Requisições</small><strong id="requests">—</strong></div>
+</div>
+</section>
 
-    <section class="grid">
-      <div class="card">
-        <h2>Testar API</h2>
-        <div class="actions">
-          <button data-endpoint="/api/health">Health</button>
-          <button data-endpoint="/api/status" class="secondary">Status</button>
-          <button data-endpoint="/api/users" class="secondary">Usuários</button>
-          <button data-endpoint="/api/messages" class="secondary">Mensagens</button>
-        </div>
-        <pre id="output">Clique em um endpoint para enviar uma requisição.</pre>
-      </div>
+<section class="grid">
+<div class="card">
+<h2>Testar endpoints</h2>
+<div class="actions">
+<button data-endpoint="/api/health">Health</button>
+<button class="secondary" data-endpoint="/api/status">Status</button>
+<button class="secondary" data-endpoint="/api/users">Usuários</button>
+<button class="secondary" data-endpoint="/api/messages">Mensagens</button>
+</div>
+<pre id="output">Escolha uma operação.</pre>
+</div>
 
-      <div class="card">
-        <h2>Criar usuário</h2>
-        <form id="userForm">
-          <label>Nome</label>
-          <input id="name" required placeholder="Ex.: Flavio">
-          <label>E-mail</label>
-          <input id="email" type="email" required placeholder="voce@email.com">
-          <button type="submit">Enviar para a API</button>
-        </form>
-      </div>
+<div class="card">
+<h2>Cadastrar usuário</h2>
+<form id="userForm">
+<label>Nome</label><input id="name" required placeholder="Nome do usuário">
+<label>E-mail</label><input id="email" type="email" required placeholder="email@exemplo.com">
+<button type="submit">Cadastrar</button>
+</form>
+<p class="hint">O cadastro é salvo no Supabase.</p>
+</div>
 
-      <div class="card wide">
-        <h2>Enviar mensagem para o servidor</h2>
-        <form id="messageForm">
-          <input id="message" required placeholder="Digite uma mensagem...">
-          <button type="submit">Enviar mensagem</button>
-        </form>
-        <pre id="messageOutput">Aguardando mensagem...</pre>
-      </div>
-    </section>
-  </main>
-
+<div class="card wide">
+<h2>Enviar mensagem</h2>
+<form id="messageForm"><input id="message" required maxlength="1000" placeholder="Escreva uma mensagem para o servidor"><button type="submit">Enviar</button></form>
+<pre id="messageOutput">Nenhuma mensagem enviada.</pre>
+</div>
+</section>
+</main>
 <script>
-const output = document.getElementById("output");
-const status = document.getElementById("status");
-const env = document.getElementById("env");
-const requests = document.getElementById("requests");
-const statusText = document.getElementById("statusText");
-
-async function request(url, options) {
-  const response = await fetch(url, options);
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.error || "Erro na API");
-  return data;
-}
-
-async function refreshHealth() {
-  try {
-    const data = await request("/api/health");
-    status.textContent = data.status;
-    env.textContent = "Vercel";
-    requests.textContent = data.requests;
-    statusText.textContent = "Servidor online";
-  } catch (error) {
-    status.textContent = "offline";
-    statusText.textContent = "Indisponível";
-  }
-}
-
-document.querySelectorAll("[data-endpoint]").forEach(button => {
-  button.addEventListener("click", async () => {
-    output.textContent = "Consultando...";
-    try {
-      output.textContent = JSON.stringify(await request(button.dataset.endpoint), null, 2);
-      refreshHealth();
-    } catch (error) {
-      output.textContent = JSON.stringify({ error: error.message }, null, 2);
-    }
-  });
-});
-
-document.getElementById("userForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  try {
-    const data = await request("/api/users", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value
-      })
-    });
-    output.textContent = JSON.stringify(data, null, 2);
-    event.target.reset();
-    refreshHealth();
-  } catch (error) {
-    output.textContent = JSON.stringify({error:error.message}, null, 2);
-  }
-});
-
-document.getElementById("messageForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  const target = document.getElementById("messageOutput");
-  try {
-    const data = await request("/api/messages", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({message: document.getElementById("message").value})
-    });
-    target.textContent = JSON.stringify(data, null, 2);
-    event.target.reset();
-    refreshHealth();
-  } catch (error) {
-    target.textContent = JSON.stringify({error:error.message}, null, 2);
-  }
-});
-
-refreshHealth();
-setInterval(refreshHealth, 15000);
+const $=id=>document.getElementById(id);
+async function api(url,opt){const r=await fetch(url,opt);const d=await r.json();if(!r.ok)throw Error(d.error||"Erro");return d}
+async function health(){try{const d=await api("/api/health");$("server").textContent=d.status;$("database").textContent=d.database;$("requests").textContent=d.requests;$("statusText").textContent="Online"}catch(e){$("server").textContent="offline";$("database").textContent="—";$("statusText").textContent="Indisponível"}}
+document.querySelectorAll("[data-endpoint]").forEach(b=>b.addEventListener("click",async()=>{ $("output").textContent="Consultando...";try{$("output").textContent=JSON.stringify(await api(b.dataset.endpoint),null,2);health()}catch(e){$("output").textContent=JSON.stringify({error:e.message},null,2)}}));
+$("userForm").addEventListener("submit",async e=>{e.preventDefault();try{const d=await api("/api/users",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:$("name").value,email:$("email").value})});$("output").textContent=JSON.stringify(d,null,2);e.target.reset();health()}catch(x){$("output").textContent=JSON.stringify({error:x.message},null,2)}});
+$("messageForm").addEventListener("submit",async e=>{e.preventDefault();try{const d=await api("/api/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:$("message").value})});$("messageOutput").textContent=JSON.stringify(d,null,2);e.target.reset();health()}catch(x){$("messageOutput").textContent=JSON.stringify({error:x.message},null,2)}});
+health();setInterval(health,15000);
 </script>
 </body>
 </html>

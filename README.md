@@ -28,3 +28,10 @@ GET `/api/users`
 POST `/api/users`
 GET `/api/messages`
 POST `/api/messages`
+
+
+## Estrutura corrigida para Vercel
+
+- `index.html` fica na raiz e é servido como página inicial.
+- `api/index.js` é detectado automaticamente como função serverless.
+- Não é necessário `vercel.json` para esta estrutura.
