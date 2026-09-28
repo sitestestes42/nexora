@@ -1,0 +1,13 @@
+{
+  "name": "servidor-interativo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Servidor interativo com API REST e painel web para Vercel",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/node": "^5.5.0",
+    "express": "^5.1.0"
+  }
+}
