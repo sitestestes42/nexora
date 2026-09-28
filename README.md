@@ -1,23 +1,30 @@
-# Servidor Interativo
+# NEXORA Server 2.0
 
-Backend REST com painel web, preparado para deploy na Vercel.
+Servidor interativo com Vercel + Express + Supabase/PostgreSQL.
+
+## 1. Banco
+
+No Supabase, abra o **SQL Editor** e execute `supabase.sql`.
+
+## 2. Variáveis na Vercel
+
+Em Project Settings > Environment Variables, adicione:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
+A `SERVICE_ROLE_KEY` é segredo: nunca coloque no GitHub e nunca no código do navegador.
+
+## 3. Deploy
+
+Envie o projeto para GitHub e importe o repositório na Vercel.
 
 ## Endpoints
 
-- GET `/api`
-- GET `/api/health`
-- GET `/api/status`
-- GET `/api/users`
-- POST `/api/users`
-- GET `/api/messages`
-- POST `/api/messages`
-
-## Deploy
-
-1. Crie um repositório no GitHub.
-2. Envie estes arquivos para o repositório.
-3. Entre na Vercel.
-4. Importe o repositório.
-5. Clique em Deploy.
-
-A Vercel detectará o `vercel.json` e a função em `api/index.js`.
+GET `/api`
+GET `/api/health`
+GET `/api/status`
+GET `/api/users`
+POST `/api/users`
+GET `/api/messages`
+POST `/api/messages`

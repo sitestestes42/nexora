@@ -1,12 +1,13 @@
 {
-  "name": "servidor-interativo",
-  "version": "1.0.0",
+  "name": "nexora-server",
+  "version": "2.0.0",
   "private": true,
-  "description": "Servidor interativo com API REST e painel web para Vercel",
+  "description": "NEXORA Server - API interativa com Vercel e Supabase",
   "scripts": {
     "dev": "vercel dev"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
     "@vercel/node": "^5.5.0",
     "express": "^5.1.0"
   }
